@@ -45,7 +45,7 @@ var layOutDay = (function() {
             lastBlock = blocks[blocks.length - 1];
 
             overlaps = lastBlock.some(function(column) {
-                return (!overlaps && (event.start <= column[column.length - 1].end));
+                return (event.start <= column[column.length - 1].end);
             });
 
             if (!overlaps) return blocks.push([[event]]);
