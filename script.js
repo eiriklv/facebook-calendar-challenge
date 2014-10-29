@@ -41,7 +41,7 @@ var layOutDay = (function() {
         sortedEvents.forEach(function(event) {
             if (blocks.length === 0) return blocks.push([[event]]);
 
-            overlaps = placed = false;
+            placed = false;
             lastBlock = blocks[blocks.length - 1];
 
             overlaps = lastBlock.some(function(column) {
