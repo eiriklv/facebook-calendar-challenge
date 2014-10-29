@@ -33,7 +33,7 @@ body {
     top: -8px;
 }
 
-.timeline .minor {
+.timeline .half {
     top: -5px;
 }
 
@@ -42,7 +42,7 @@ body {
     margin: 0;
 }
 
-.timeline .minor p {
+.timeline .half p {
     width: auto;
 }
 
@@ -50,7 +50,7 @@ body {
     font-weight: bold;
     font-size: 13px;
     color: #686868;
-    margin-right: 2px;
+    margin-right: 5px;
 }
 
 .scheduler-wrapper {
