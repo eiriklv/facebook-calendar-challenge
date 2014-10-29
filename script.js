@@ -33,18 +33,18 @@ var layOutDay = (function() {
         });
     };
 
-    function generateBlocks(events) {
+    function generateLayout(events) {
         var blocks = [];
         var sortedEvents = sortEvents(events, 'start');
         var overlaps, placed, lastBlock;
 
         sortedEvents.forEach(function(event) {
-            overlaps = placed = false;
-            lastBlock = blocks[blocks.length - 1];
-
             if (blocks.length === 0) {
                 return blocks.push([[event]]);
             }
+
+            overlaps = placed = false;
+            lastBlock = blocks[blocks.length - 1];
 
             overlaps = lastBlock.some(function(column) {
                 return (!overlaps && (event.start <= column[column.length - 1].end));
@@ -75,7 +75,7 @@ var layOutDay = (function() {
     }
 
     function layOutDay(events) {
-        renderLayout(generateBlocks(events));
+        renderLayout(generateLayout(events));
     }
 
     return layOutDay;
