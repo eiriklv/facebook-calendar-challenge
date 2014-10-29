@@ -26,8 +26,8 @@ var layOutDay = (function() {
             block.forEach(function(column, index) {
                 offset = ((index * width) / 100) * 100;
 
-                column.forEach(function(eventElement) {
-                    calendarElement.innerHTML += renderEvent(eventElement.start, eventElement.end, offset, width);
+                column.forEach(function(event) {
+                    calendarElement.innerHTML += renderEvent(event.start, event.end, offset, width);
                 });
             });
         });
@@ -47,7 +47,7 @@ var layOutDay = (function() {
             }
 
             overlaps = lastBlock.some(function(column) {
-                return (!overlaps && (event.start < column[column.length - 1].end));
+                return (!overlaps && (event.start <= column[column.length - 1].end));
             });
 
             if (!overlaps) {
@@ -55,9 +55,8 @@ var layOutDay = (function() {
             }
 
             lastBlock.forEach(function(column) {
-                if (!placed && (event.start > column[column.length - 1].end)) {
-                    column.push(event);
-                    placed = true;
+                if (!placed && (event.start >= column[column.length - 1].end)) {
+                    placed = !!column.push(event);
                 }
             });
 
