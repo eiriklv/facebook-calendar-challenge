@@ -95,9 +95,10 @@
         </div>
     </div>
 
-    <script src="es5-shim.js" type="application/javascript"></script>
-    <script src="script.js" type="application/javascript"></script>
-    <script>
+    <!-- use type="text/javascript" to support IE8 -->
+    <script src="es5-shim.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
+    <script type="text/javascript">
     layOutDay([{
         start: 30,
         end: 180
