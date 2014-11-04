@@ -34,7 +34,7 @@ var layOutDay = (function() {
 
     /**
      * Render an a set of events to HTML and append to document.
-     * @param {number} blocks - a collection of blocks of consecutive ovelapping events
+     * @param {array} blocks - a collection of blocks of consecutive ovelapping events divided in columns
      */
     function renderLayout(blocks) {
         var calendarElement = document.getElementById(containerId),
@@ -61,7 +61,7 @@ var layOutDay = (function() {
 
     /**
      * Generate an array representation of the layout where:
-     * - each element (called block) is an array of columns
+     * - each element (block) is an array of columns
      * - each column is an array of event objects
      *
      * All consecutively overlapping events are added to the
@@ -98,14 +98,14 @@ var layOutDay = (function() {
             }
 
             // if the event overlaps
-            // - try to place it to an existing column of the last block
+            // - try to place the event in an existing column of the last block
             placed = lastBlock.some(function(column) {
                 if (event.start >= column[column.length - 1].end) {
                     return !!column.push(event);
                 }
             });
 
-            // if it could not be placed in an existing column
+            // if the event could not be placed in an existing column
             // - create a new column in the last block and place the event
             if (!placed) {
                 return lastBlock.push([event]);
