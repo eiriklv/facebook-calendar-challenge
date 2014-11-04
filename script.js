@@ -6,9 +6,9 @@ var layOutDay = (function() {
 
     /**
      * Render a single event to HTML.
-     * @param  {number} start - event start time at number of minutes past 9AM.
-     * @param  {number} end - event end time at number of minutes past 9AM.
-     * @param  {number} offset - left edge / column offset for the event.
+     * @param  {number} start - event start time in number of minutes past 9AM.
+     * @param  {number} end - event end time in number of minutes past 9AM.
+     * @param  {number} offset - left edge / column offset in percentage for the event.
      * @param  {number} width - width of the event in percentage of the total available width.
      * @return {string} the HMTL string representation of the event.
      */
@@ -17,7 +17,7 @@ var layOutDay = (function() {
             'top: ' + start + 'px;',
             'left: ' + offset + '%;',
             'height: ' + (end - start) + 'px;',
-            'width: ' + width + '%"'
+            'width: ' + width + '%;'
         ].join('');
 
         return [
