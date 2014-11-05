@@ -24,8 +24,8 @@ var layOutDay = (function() {
             '<div class="event" style="' + style + '">',
             '   <div class="content">',
             '       <div class="inner-content">',
-            '           <span class="event-title">Sample Item</span>',
-            '           <span class="event-location">Sample Location</span>',
+            '           <h3 class="event-title">Sample Item</h3>',
+            '           <p class="event-location">Sample Location</p>',
             '       </div>',
             '   </div>',
             '</div>'
