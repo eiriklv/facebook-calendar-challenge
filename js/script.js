@@ -35,20 +35,23 @@ var layOutDay = (function() {
      * @param {array} blocks - a collection of blocks of consecutive ovelapping events divided in columns
      */
     function renderLayoutToHTML(blocks) {
-        var width,
+        var html = [],
+            width,
             offset;
 
-        return blocks.map(function(block) {
+        blocks.forEach(function(block) {
             width = 100 / (block.length);
 
-            return block.map(function(column, index) {
+            block.forEach(function(column, index) {
                 offset = ((index * width) / 100) * 100;
 
-                return column.map(function(event) {
-                    return renderEventToHTML(event.start, event.end, offset, width);
-                }).join('');
-            }).join('');
-        }).join('');
+                column.forEach(function(event) {
+                    html.push(renderEventToHTML(event.start, event.end, offset, width));
+                });
+            });
+        });
+
+        return html.join('');
     }
 
     /**
