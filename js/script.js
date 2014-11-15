@@ -1,4 +1,6 @@
 /**
+ * @author Eirik Vullum (evullum@gmail.com)
+ *
  * Given a set of events, renders the events on a single day calendar with the following layout properties:
  * 1. No events visually overlap.
  * 2. If two events collide in time, they have the same width.
