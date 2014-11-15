@@ -1,6 +1,14 @@
+/**
+ * Given a set of events, renders the events on a single day calendar with the following layout properties:
+ * 1. No events visually overlap.
+ * 2. If two events collide in time, they have the same width.
+ * 3. An event utilized the maximum width available, but constraint 2) takes precedence over this constraint.
+ *
+ * @param {array} events - set of events to render
+ */
 var layOutDay = (function() {
     
-    'use strict';
+    "use strict";
 
     /**
      * Render a single event to HTML.
@@ -18,6 +26,7 @@ var layOutDay = (function() {
             'width: ' + width + '%;'
         ].join('');
 
+        // indented strings for readability only
         return [
             '<div class="event" style="' + style + '">',
             '   <div class="content">',
@@ -35,9 +44,9 @@ var layOutDay = (function() {
      * @param {array} blocks - a collection of blocks of consecutive ovelapping events divided in columns
      */
     function renderLayoutToHTML(blocks) {
-        var html = [],
-            width,
-            offset;
+        var html = [];
+        var width;
+        var offset;
 
         blocks.forEach(function(block) {
             width = 100 / (block.length);
@@ -66,11 +75,11 @@ var layOutDay = (function() {
      * @return {array} - the layout array structure
      */
     function generateLayoutGraph(events) {
-        var blocks = [],
-            sortedEvents = sortByProp(events, 'start'),
-            overlaps,
-            placed,
-            lastBlock;
+        var blocks = [];
+        var sortedEvents = sortByProp(events, 'start');
+        var overlaps;
+        var placed;
+        var lastBlock;
 
         sortedEvents.forEach(function(event) {
             // if it's the first event
@@ -128,7 +137,7 @@ var layOutDay = (function() {
      * @param  {array} events - array of event objects
      */
     return function(events) {
-        var calendarElement = document.getElementById('scheduler');
-        calendarElement.innerHTML = renderLayoutToHTML(generateLayoutGraph(events || []));
+        var scheduleElement = document.getElementById('schedule');
+        scheduleElement.innerHTML = renderLayoutToHTML(generateLayoutGraph(events || []));
     };
 }());

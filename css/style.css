@@ -55,7 +55,7 @@ body {
     margin-right: 5px;
 }
 
-.scheduler-wrapper {
+.schedule-wrapper {
     display: block;
     border-left: 1px solid #CCCCCC;
     background-color: #ECECEC;
@@ -65,18 +65,18 @@ body {
     padding: 0 10px;
 }
 
-.scheduler {
+.schedule {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.scheduler .event {
+.schedule .event {
     position: absolute;
     overflow: hidden;
 }
 
-.scheduler .event .content {
+.schedule .event .content {
     float: left;
     width: 100%;
     height: 100%;
