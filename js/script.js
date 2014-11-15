@@ -28,7 +28,7 @@ var layOutDay = (function() {
       'width: ' + width + '%;'
     ].join('');
 
-    // indented strings for readability only
+    // strings indented for readability only
     return [
       '<div class="event" style="' + style + '">',
       '   <div class="content">',
@@ -138,10 +138,6 @@ var layOutDay = (function() {
     });
   }
 
-  /**
-   * Lay events out in the document
-   * @param  {array} events - array of event objects
-   */
   return function(events) {
     var scheduleElement = document.getElementById('schedule');
     scheduleElement.innerHTML = renderLayoutToHTML(generateLayoutGraph(events || []));
