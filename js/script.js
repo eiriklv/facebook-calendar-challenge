@@ -2,8 +2,6 @@ var layOutDay = (function() {
     
     'use strict';
 
-    var containerId = 'scheduler';
-
     /**
      * Render a single event to HTML.
      * @param  {number} start - event start time in number of minutes past 9AM.
@@ -12,7 +10,7 @@ var layOutDay = (function() {
      * @param  {number} width - width of the event in percentage of the total available width.
      * @return {string} the HMTL string representation of the event.
      */
-    function renderEvent(start, end, offset, width) {
+    function renderEventToHTML(start, end, offset, width) {
         var style = [
             'top: ' + start + 'px;',
             'left: ' + offset + '%;',
@@ -33,16 +31,13 @@ var layOutDay = (function() {
     }
 
     /**
-     * Render an a set of events to HTML and append to document.
+     * Render an a set of events to HTML.
      * @param {array} blocks - a collection of blocks of consecutive ovelapping events divided in columns
      */
-    function renderLayout(blocks) {
-        var calendarElement = document.getElementById(containerId),
-            html = [],
+    function renderLayoutToHTML(blocks) {
+        var html = [],
             width,
             offset;
-
-        calendarElement.innerHTML = '';
 
         blocks.forEach(function(block) {
             width = 100 / (block.length);
@@ -51,16 +46,16 @@ var layOutDay = (function() {
                 offset = ((index * width) / 100) * 100;
 
                 column.forEach(function(event) {
-                    html.push(renderEvent(event.start, event.end, offset, width));
+                    html.push(renderEventToHTML(event.start, event.end, offset, width));
                 });
             });
         });
 
-        calendarElement.innerHTML = html.join('');
+        return html.join('');
     }
 
     /**
-     * Generate an array representation of the layout where:
+     * Generate an graph (array) representation of the layout where:
      * - each element (block) is an array of columns
      * - each column is an array of event objects
      *
@@ -70,7 +65,7 @@ var layOutDay = (function() {
      * @param  {array} events - an array of event objects
      * @return {array} - the layout array structure
      */
-    function generateLayout(events) {
+    function generateLayoutGraph(events) {
         var blocks = [],
             sortedEvents = sortByProp(events, 'start'),
             overlaps,
@@ -97,7 +92,7 @@ var layOutDay = (function() {
                 return blocks.push([[event]]);
             }
 
-            // if the event overlaps
+            // if the event overlaps with the last block
             // - try to place the event in an existing column of the last block
             placed = lastBlock.some(function(column) {
                 if (event.start >= column[column.length - 1].end) {
@@ -116,7 +111,7 @@ var layOutDay = (function() {
     }
 
     /**
-     * Sort an array of event objects without side-effects (object ref's still apply ofc)
+     * Sort an array of event objects without side-effects (object refs still apply ofc)
      * @param  {number} array - the array that should be sorted
      * @param  {string} prop - what object property to sort by
      * @param  {boolean} desc - sorts ascending by default (false)
@@ -133,6 +128,7 @@ var layOutDay = (function() {
      * @param  {array} events - array of event objects
      */
     return function(events) {
-        renderLayout(generateLayout(events || []));
+        var calendarElement = document.getElementById('scheduler');
+        calendarElement.innerHTML = renderLayoutToHTML(generateLayoutGraph(events || []));
     };
 }());
