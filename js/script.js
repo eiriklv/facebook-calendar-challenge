@@ -42,7 +42,7 @@ var layOutDay = (function() {
   }
 
   /**
-   * Render an a set of events to HTML.
+   * Render a set of events to HTML.
    * @param {array} blocks - a collection of blocks of consecutive ovelapping events divided in columns
    */
   function renderLayoutToHTML(blocks) {
@@ -66,7 +66,7 @@ var layOutDay = (function() {
   }
 
   /**
-   * Generate an graph (array) representation of the layout where:
+   * Generate a graph (array) representation of the layout where:
    * - each element (block) is an array of columns
    * - each column is an array of event objects
    *
